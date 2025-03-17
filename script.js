@@ -2,6 +2,12 @@ function addTask(){
     const inputTask = document.getElementById('inputTask').value.trim();
     const timeValue1 = document.getElementById('timePicker1').value;
     const timeValue2 = document.getElementById('timePicker2').value;
+    if(timeValue2 <= timeValue1)
+    {
+        alert("Please select time in order")
+        document.getElementById('inputTask').value=""
+        return; 
+    }
     if (inputTask === "") {
         alert("Please enter a task!"); 
         document.getElementById('inputTask').value=""
@@ -16,15 +22,6 @@ function addTask(){
     document.getElementById('inputTask').value=""
     deleteTask(newTask)
 }
-function validateTime() {
-            let time1 = document.getElementById("timePicker1").value
-            let time2 = document.getElementById("timePicker2")
-            // Ensure time2 cannot be earlier than time1
-            time2.min = time1
-            if (time2.value < time1) {
-                time2.value = time1
-            }
-        }
 function deleteTask(newTask)
 {
     const deleteBtn = document.createElement('button')
