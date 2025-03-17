@@ -9,7 +9,7 @@ function addTask(){
     }
     const newTask = document.createElement('li')
     const taskList = document.getElementById('taskList')
-    newTask.textContent = `Started at: ${timeValue1} ${inputTask} Due at: ${timeValue2}`
+    newTask.textContent = `Started at: ${timeValue1}- Due at: ${timeValue2} ${inputTask}`
     taskList.appendChild(newTask)
     // newTask.textContent = inputTask
     // newTask.textContent = document.getElementById('inputTask').value
