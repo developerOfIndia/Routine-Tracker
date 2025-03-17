@@ -2,6 +2,7 @@ function addTask(){
     const inputTask = document.getElementById('inputTask').value.trim();
     if (inputTask === "") {
         alert("Please enter a task!"); 
+        document.getElementById('inputTask').value=""
         return; 
     }
     const newTask = document.createElement('li')
