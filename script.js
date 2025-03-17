@@ -9,6 +9,8 @@ function addTask(){
     if(timeValue2 <= timeValue1)
     {
         alert("Please select time in order")
+        document.getElementById('timePicker1').value = "12:00";  
+        document.getElementById('timePicker2').value = "12:00"; 
         document.getElementById('inputTask').value=""
         return; 
     }
