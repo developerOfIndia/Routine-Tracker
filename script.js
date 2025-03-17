@@ -1,8 +1,14 @@
 function addTask(){
+    const inputTask = document.getElementById('inputTask').value.trim();
+    if (inputTask === "") {
+        alert("Please enter a task!"); 
+        return; 
+    }
     const newTask = document.createElement('li')
     const taskList = document.getElementById('taskList')
     taskList.appendChild(newTask)
-    newTask.textContent = document.getElementById('inputTask').value
+    newTask.textContent = inputTask
+    // newTask.textContent = document.getElementById('inputTask').value
     document.getElementById('inputTask').value=""
     deleteTask(newTask)
 }
