@@ -25,6 +25,8 @@ function addTask(){
     newTask.textContent = `Started at: ${formattedTime1} - Due at: ${formattedTime2} | ${inputTask}`
     taskList.appendChild(newTask)
     document.getElementById('inputTask').value=""
+    document.getElementById('timePicker1').value = "12:00";
+    document.getElementById('timePicker2').value = "12:00";
     deleteTask(newTask)
 }
 // Function to convert 24-hour format to 12-hour format
