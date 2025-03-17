@@ -13,13 +13,10 @@ function addTask(){
         document.getElementById('inputTask').value=""
         return; 
     }
-    // Ensure the time is displayed in 24-hour format
-    const formattedTime1 = convertTo24HourFormat(timeValue1)
-    const formattedTime2 = convertTo24HourFormat(timeValue2)
     
     const newTask = document.createElement('li')
     const taskList = document.getElementById('taskList')
-    newTask.textContent = `Started at: ${formattedTime1} - Due at: ${formattedTime2} | ${inputTask}`
+    newTask.textContent = `Started at: ${timeValue1} - Due at: ${timeValue2} | ${inputTask}`
     taskList.appendChild(newTask)
     document.getElementById('inputTask').value=""
     deleteTask(newTask)
