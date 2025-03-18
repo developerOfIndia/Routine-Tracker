@@ -65,11 +65,9 @@ body{
     justify-content: flex-start;
     margin-left: 25px;
 }
-textarea{
+input{
     padding: 10px;
-    border-radius: 5px;
-    width: 290px;
-    height:16px;
+    border-radius: 7px;
 }
 button:hover{
    border: 1px solid black;

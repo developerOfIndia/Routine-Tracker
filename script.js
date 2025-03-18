@@ -21,19 +21,6 @@ function addTask(){
         document.getElementById('inputTask').value=""
         return; 
     }
-    // auto-enter in inputBox
-    function autoEnter(textarea) {
-        let lines = textarea.value.split("\n");
-        let maxCharsPerLine = 50; // Adjust based on textbox size
-    
-        let newText = lines.map(line => {
-            return line.length > maxCharsPerLine ? line.replace(/(.{50})/g, "$1\n") : line;
-        }).join("\n");
-    
-        if (newText !== textarea.value) {
-            textarea.value = newText;
-        }
-    }
     // formattedTime
     const formattedTime1 = convertTo12HourFormat(timeValue1);
     const formattedTime2 = convertTo12HourFormat(timeValue2);
