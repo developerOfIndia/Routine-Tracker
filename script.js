@@ -21,6 +21,19 @@ function addTask(){
         document.getElementById('inputTask').value=""
         return; 
     }
+    // auto-enter in inputBox
+    function autoEnter(textarea) {
+        let lines = textarea.value.split("\n");
+        let maxCharsPerLine = 50; // Adjust based on textbox size
+    
+        let newText = lines.map(line => {
+            return line.length > maxCharsPerLine ? line.replace(/(.{50})/g, "$1\n") : line;
+        }).join("\n");
+    
+        if (newText !== textarea.value) {
+            textarea.value = newText;
+        }
+    }
     // formattedTime
     const formattedTime1 = convertTo12HourFormat(timeValue1);
     const formattedTime2 = convertTo12HourFormat(timeValue2);
@@ -46,7 +59,13 @@ function deleteTask(newTask)
 {
     const deleteBtn = document.createElement('button')
     deleteBtn.textContent="Delete"
-    deleteBtn.id = "date-button"; 
+    deleteBtn.style.backgroundColor = "#FF6F61"
+    deleteBtn.style.color = "white"
+    deleteBtn.style.border = "1px solid black"
+    deleteBtn.style.padding = "8px 12px"
+    deleteBtn.style.borderRadius = "5px"
+    deleteBtn.style.cursor = "pointer"
+    deleteBtn.style.marginLeft = "10px"
     newTask.appendChild(deleteBtn)
     deleteBtn.onclick = function(){
         newTask.remove()
