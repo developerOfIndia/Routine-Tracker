@@ -83,9 +83,9 @@ body{
 }
 textarea{
     padding: 10px;
-    border-radius: 7px;
+    border-radius: 5px;
     width: 290px;
-    height:30px;
+    height:16px;
 }
 button:hover{
    border: 1px solid black;
