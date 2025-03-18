@@ -13,14 +13,14 @@
     <div class="addTask">
         <input type="time" id="timePicker1" class="timePicker" value="12:00" step="60">
         <input type="time" id="timePicker2" class="timePicker" value="12:00" step="60">
-        <input type="text" placeholder="Add a new task" id="inputTask">
-        <button id="main-button" onclick="addTask()">Save Task</button>
+        <textarea id="inputTask" rows="4" cols="50" placeholder="Enter your task"  oninput="autoEnter(this)"></textarea>
+        <button id="btnAddTask" onclick="addTask()">Save Task</button>
     </div>
     <div class="date-row">
         <div class="date-col">Date: </div>
-        <div class="buttons column">
-            <button id="date-button" onclick="">Download</button>
-            <button id="date-button" onclick="">🖨️ Print List</button>
+        <div class="btn-row">
+            <button id="btnDownload" onclick="">📄 Download</button>
+            <button id="btnPrint" onclick="">🖨️ Print</button>
         </div>
     </div>
     <div class="row">
