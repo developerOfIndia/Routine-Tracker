@@ -27,7 +27,6 @@ body{
     font-size: 1.4em;
     font-weight: 900;
     display: flex; 
-    justify-content: flex-start;
     width: 100%; 
 }
 .date-col{
