@@ -79,6 +79,7 @@ body{
        border-radius: 5px;
        width: 290px;
        height:16px;
+       border:none;
    }
    button:hover{
       /*border: 1px solid black;*/
