@@ -15,7 +15,7 @@ function addTask(){
         return; 
     }
     if (inputTask === "") {
-        alert("Please enter a task!"); 
+        alert("Please enter a task! Task cannot be empty."); 
         document.getElementById('inputTask').value=""
         return; 
     }

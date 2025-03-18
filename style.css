@@ -14,7 +14,6 @@ body{
     height: auto;
     width: 45vw;
     box-shadow: 4px 5px 6px;
-
 }
 .header{
     font-size: 1.7em;
@@ -35,7 +34,6 @@ body{
 }
 .addTask{
     display: flex;
-    /* justify-content: space-evenly; */
     align-items: center;
     justify-content: flex-start;
     margin-left: 25px;
@@ -51,10 +49,8 @@ button:hover{
 }
 button{
     border-radius: 5px;
-    /* color:rgb(11,11,11); */
     color:white;
     font-size: 1em;
-    /* background-color: rgb(244,242,153); */
     background-color: #FF6F61;
     padding: 10px;
     margin-left: 10px;
@@ -62,7 +58,6 @@ button{
 ul{
     list-style: none;
     padding: 15px;
-
 }
 li{
     display:flex;
@@ -71,5 +66,4 @@ li{
     border-radius: 5px;
     padding:8px;
     margin-bottom: 7px;
-
 }
