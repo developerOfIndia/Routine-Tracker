@@ -74,7 +74,7 @@ body{
        margin-left: 25px;
        margin-bottom: 10px;
    }
-   textarea{
+   input{
        padding: 10px;
        border-radius: 5px;
        width: 290px;
@@ -93,8 +93,7 @@ body{
        padding: 10px;
        margin-left: 10px;
        border: none;
-   }
-   
+   }  
    #btnPrint, #btnDownload {
        border-radius: 5px;
        color: white;
@@ -104,8 +103,7 @@ body{
        border: none;
        cursor: pointer;
        transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth transition */
-   }
-   
+   } 
    ul{
        list-style: none;
        padding: 15px;
