@@ -13,7 +13,7 @@
     <div class="addTask">
         <input type="time" id="timePicker1" class="timePicker" value="12:00" step="60">
         <input type="time" id="timePicker2" class="timePicker" value="12:00" step="60">
-        <input type="text" placeholder="Enter your task" id="inputTask">
+        <textarea id="inputTask" rows="4" cols="50" placeholder="Enter your task"  oninput="autoEnter(this)"></textarea>
         <button onclick="addTask()">Save Task</button>
     </div>
     <ul class="task-List" id="taskList"></ul>

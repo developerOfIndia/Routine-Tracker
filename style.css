@@ -38,10 +38,11 @@ body{
     justify-content: flex-start;
     margin-left: 25px;
 }
-input{
+textarea{
     padding: 10px;
     border-radius: 7px;
-    width: 280px;
+    width: 290px;
+    height:30px;
 }
 button:hover{
    border: 1px solid black;

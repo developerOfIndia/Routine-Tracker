@@ -2,6 +2,7 @@ function addTask(){
     const inputTask = document.getElementById('inputTask').value.trim()
     const timeValue1 = document.getElementById('timePicker1').value
     const timeValue2 = document.getElementById('timePicker2').value
+    // validation for time
     if (!timeValue1 || !timeValue2) {
             alert("Please select valid time values!")
             return
@@ -14,11 +15,26 @@ function addTask(){
         document.getElementById('inputTask').value=""
         return; 
     }
+    // validation for input
     if (inputTask === "") {
         alert("Please enter a task! Task cannot be empty."); 
         document.getElementById('inputTask').value=""
         return; 
     }
+    // auto-enter in inputBox
+    function autoEnter(textarea) {
+        let lines = textarea.value.split("\n");
+        let maxCharsPerLine = 50; // Adjust based on textbox size
+    
+        let newText = lines.map(line => {
+            return line.length > maxCharsPerLine ? line.replace(/(.{50})/g, "$1\n") : line;
+        }).join("\n");
+    
+        if (newText !== textarea.value) {
+            textarea.value = newText;
+        }
+    }
+    // formattedTime
     const formattedTime1 = convertTo12HourFormat(timeValue1);
     const formattedTime2 = convertTo12HourFormat(timeValue2);
     
