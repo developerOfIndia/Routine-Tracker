@@ -48,7 +48,7 @@ function deleteTask(newTask)
     deleteBtn.textContent="Delete"
     deleteBtn.style.backgroundColor = "#FF6F61"
     deleteBtn.style.color = "white"
-    deleteBtn.style.border = "1px solid black"
+    deleteBtn.style.border = "none"
     deleteBtn.style.padding = "8px 12px"
     deleteBtn.style.borderRadius = "5px"
     deleteBtn.style.cursor = "pointer"
