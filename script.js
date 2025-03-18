@@ -59,6 +59,7 @@ function deleteTask(newTask)
 {
     const deleteBtn = document.createElement('button')
     deleteBtn.textContent="Delete"
+    deleteBtn.id = "date-button"; 
     newTask.appendChild(deleteBtn)
     deleteBtn.onclick = function(){
         newTask.remove()
