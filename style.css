@@ -1,141 +1,168 @@
-body{
-    margin: 0%;
-    padding: 0%;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    background-color: rgb(230,230, 230);
-    align-items: center;
-   }
-   .container{
-       border: none;
-       border-radius: 15px;
-       background-color: rgb(156,222,252);
-       height: auto;
-       width: 45vw;
-       box-shadow: 4px 5px 6px;
-   }
-   .header{
-       font-size: 1.7em;
-       font-weight: 900;
-       text-align: center;
-       padding: 10px;
-       border-bottom: 0.5px solid white;
-       margin-bottom: 20px;
-   }
-   .date-row {
-       font-size: 1.4em;
-       font-weight: 900;
-       display: flex; 
-       width: 100%; 
-       border-top:0.5px solid white;
-   }
-   .btn-row{
-       display: flex;
-       margin-top: 15px;
-       align-items: center;
-       justify-content: flex-start;
-       margin-right: 35px;
-   }
-   .date-col{
-       flex: 1;
-       padding-top: 10px;
-       /* text-align: center; */
-       margin-left: 25px;
-       margin-top:10px;    
-   }
-   .row {
-       font-size: 1.4em;
-       font-weight: 900;
-       display: flex; 
-       justify-content: space-between;
-       width: 100%;
-   }
-   .column {
-       flex: 1; /* Equal width for both columns */
-       padding-top: 10px;
-       text-align: center;
-       border-top:0.5px solid white;
-       margin-top:10px;
-   }
-   .timePicker {
-       font-size: 1.07em;
-       padding: 10px;
-       margin-right: 15px; /* Space between time picker and input */
-       width: 70px; /* Fixed width for the time picker */
-       text-align: center;
-       border-radius: 5px;
-       border: 1px solid #ccc;
-   }
-   .addTask{
-       display: flex;
-       align-items: center;
-       justify-content: flex-start;
-       margin-left: 25px;
-       margin-bottom: 10px;
-   }
-   input{
-       padding: 10px;
-       border-radius: 5px;
-       width: 290px;
-       height:16px;
-       border:none;
-   }
-   button:hover{
-      /*border: 1px solid black;*/
-      box-shadow: 2px 2px 2px;
-      transform: scale(1.05);
-   }
-   #btnAddTask{
-       border-radius: 5px;
-       color:white;
-       font-size: 1em;
-       background-color: #FF6F61;
-       padding: 10px;
-       margin-left: 10px;
-       border: none;
-   }  
-   #btnPrint, #btnDownload {
-       border-radius: 5px;
-       color: white;
-       background-color: #FF6F61;
-       padding: 8px 15px; /* Increased padding to prevent size shift */
-       margin-left: 10px;
-       border: none;
-       cursor: pointer;
-       transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth transition */
-   } 
-   ul{
-       list-style: none;
-       padding: 15px;
-   }
-   li{
-    display: grid;
-    grid-template-columns: 1fr 2fr auto; /* Creates two equal columns */
-    align-items: center;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 8px;
-    margin-bottom: 7px;
-    gap: 10px;
+body {
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(230, 230, 230);
+  align-items: center;
+}
+.container {
+  border: none;
+  border-radius: 15px;
+  background-color: rgb(156, 222, 252);
+  height: auto;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 4px 5px 6px;
+  padding: 15px;
+}
+.header {
+  font-size: 1.7em;
+  font-weight: 900;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 0.5px solid white;
+  margin-bottom: 20px;
+}
+.date-row {
+  font-size: 1.4em;
+  font-weight: 900;
+  display: flex;
+  width: 100%;
+  border-top: 0.5px solid white;
+}
+.btn-row {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 35px;
+}
+.date-col {
+  flex: 1;
+  padding-top: 10px;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+.row {
+  font-size: 1.4em;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.column {
+  flex: 1; /* Equal width for both columns */
+  padding-top: 10px;
+  text-align: center;
+  border-top: 0.5px solid white;
+  margin-top: 10px;
+}
+.timePicker {
+  font-size: 1.07em;
+  padding: 10px;
+  margin-right: 15px; /* Space between time picker and input */
+  width: 70px; /* Fixed width for the time picker */
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 80px;
+}
+.addTask {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 25px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 290px;
+  height: 16px;
+  border: none;
+  flex: 1;
+  min-width: 80px;
+}
+button:hover {
+  /*border: 1px solid black;*/
+  box-shadow: 2px 2px 2px;
+  transform: scale(1.05);
+}
+#btnAddTask {
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+  background-color: #ff6f61;
+  padding: 10px;
+  margin-left: 10px;
+  border: none;
+  min-width: 100px;
+}
+#btnPrint, #btnDownload {
+  border-radius: 5px;
+  color: white;
+  background-color: #ff6f61;
+  padding: 8px 15px; /* Increased padding to prevent size shift */
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth transition */
+}
+ul {
+  list-style: none;
+  padding: 15px;
+}
+li {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto; /* Creates two equal columns */
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 7px;
+  gap: 10px;
 }
 .timeData {
-    text-align: left;
-    font-weight: bold;
+  text-align: left;
+  font-weight: bold;
 }
 .taskData {
-    text-align: center; 
+  text-align: center;
 }
 .delete-btn {
-    background-color: #FF6F61;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .delete-btn:hover {
-    background-color: #e65b50;
-    transform: scale(1.05);
+  background-color: #e65b50;
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .row {
+    display: block;
+    text-align: center;
+  }
+
+  .task-List li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .delete-btn {
+    width: 100%;
+    margin-top: 5px;
+  }
 }
