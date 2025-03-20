@@ -110,10 +110,32 @@ body{
        padding: 15px;
    }
    li{
-       display:flex;
-       justify-content: space-between;
-       border:1px solid white;
-       border-radius: 5px;
-       padding:8px;
-       margin-bottom: 7px;
-   }
+    display: grid;
+    grid-template-columns: 1fr 2fr auto; /* Creates two equal columns */
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 7px;
+    gap: 10px;
+}
+.timeData {
+    text-align: left;
+    font-weight: bold;
+}
+.taskData {
+    text-align: right;
+}
+.delete-btn {
+    background-color: #FF6F61;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.delete-btn:hover {
+    background-color: #e65b50;
+    transform: scale(1.05);
+}
