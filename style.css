@@ -12,10 +12,8 @@ body {
   border-radius: 15px;
   background-color: rgb(156, 222, 252);
   height: auto;
-  width: 90%;
-  max-width: 600px;
+  width: 45vw;
   box-shadow: 4px 5px 6px;
-  padding: 15px;
 }
 .header {
   font-size: 1.7em;
@@ -59,6 +57,15 @@ body {
   border-top: 0.5px solid white;
   margin-top: 10px;
 }
+.addTask {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 25px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  max-width: 100%; 
+}
 .timePicker {
   font-size: 1.07em;
   padding: 10px;
@@ -67,17 +74,6 @@ body {
   text-align: center;
   border-radius: 5px;
   border: 1px solid #ccc;
-  flex: 1;
-  min-width: 80px;
-}
-.addTask {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 25px;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 input {
   padding: 10px;
@@ -85,11 +81,8 @@ input {
   width: 290px;
   height: 16px;
   border: none;
-  flex: 1;
-  min-width: 80px;
 }
 button:hover {
-  /*border: 1px solid black;*/
   box-shadow: 2px 2px 2px;
   transform: scale(1.05);
 }
@@ -101,9 +94,10 @@ button:hover {
   padding: 10px;
   margin-left: 10px;
   border: none;
-  min-width: 100px;
 }
-#btnPrint, #btnDownload {
+#btnPrint,
+#btnDownload,
+#btnDelete {
   border-radius: 5px;
   color: white;
   background-color: #ff6f61;
@@ -130,6 +124,7 @@ li {
 .timeData {
   text-align: left;
   font-weight: bold;
+  white-space: pre-line;
 }
 .taskData {
   text-align: center;
@@ -148,11 +143,34 @@ li {
   transform: scale(1.05);
 }
 @media (max-width: 768px) {
+  .container {
+    width: 90%;
+    max-width: 600px;
+    padding: 15px;
+  }
+  .addTask {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center; 
+  }
   .row {
     display: block;
     text-align: center;
   }
-
+  input {
+    flex: 1;
+    min-width: 80px;
+    max-width: 100%;
+  }
+  #btnAddTask {
+    min-width: 100px;
+    max-width: 100%;
+  }
+  .timePicker {
+    flex: 1;
+    min-width: 80px;
+    max-width: 100%;
+  }
   .task-List li {
     display: flex;
     flex-direction: column;
@@ -160,7 +178,6 @@ li {
     text-align: center;
     padding: 10px;
   }
-
   .delete-btn {
     width: 100%;
     margin-top: 5px;
