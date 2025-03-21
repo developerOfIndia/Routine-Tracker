@@ -61,3 +61,28 @@ function convertTo12HourFormat(time) {
   hours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
   return `${hours}:${minutes} ${period}`;
 }
+
+// Function to download tasks
+function downloadTasks() {
+    let taskList = document.getElementById("taskList").children
+    if (taskList.length === 0) {
+        alert("No tasks to download!")
+        return;
+    }
+
+    let content = "Routine Tracker Tasks\n\n";
+    for (let task of taskList) {
+        let time = task.querySelector(".timeData").innerText
+        let taskText = task.querySelector(".taskData").innerText
+        content += `${time}\nTask: ${taskText}\n\n`
+    }
+
+    let blob = new Blob([content], { type: "text/plain" })
+    let link = document.createElement("a")
+    link.href = URL.createObjectURL(blob)
+    link.download = "Routine_Tasks.txt"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+}
+
