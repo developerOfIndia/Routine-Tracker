@@ -89,11 +89,11 @@ function downloadTasks() {
 
 function printTasks() {
     let taskList = document.getElementById("taskList");
-    let tasks = taskList.querySelectorAll("li"); // Select all task items
+    let tasks = taskList.querySelectorAll("li"); // Get all task items
 
-    if (tasks.length === 0) { // Check if tasks exist
+    if (tasks.length === 0) { // Check if there are no tasks
         alert("No tasks to print!");
-        return;
+        return; // Stop execution if no tasks exist
     }
 
     let printContent = `<h2>Routine Tracker Tasks</h2><table style="width:100%; border-collapse: collapse;">`;
@@ -109,6 +109,7 @@ function printTasks() {
 
     printContent += `</table>`;
 
+    // Open print window only if tasks exist
     let printWindow = window.open("", "", "width=800,height=600");
     printWindow.document.write(`
         <html>
