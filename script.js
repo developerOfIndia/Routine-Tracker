@@ -88,8 +88,10 @@ function downloadTasks() {
 //Function to print tasks
 
 function printTasks() {
-    let taskList = document.getElementById("taskList").children;
-    if (taskList.childElementCount === 0) {
+    let taskList = document.getElementById("taskList");
+    let tasks = taskList.querySelectorAll("li"); // Select all task items
+
+    if (tasks.length === 0) { // Check if tasks exist
         alert("No tasks to print!");
         return;
     }
@@ -98,12 +100,13 @@ function printTasks() {
     printContent += `<tr><th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Time</th>
                          <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Task</th></tr>`;
 
-    for (let task of taskList) {
+    tasks.forEach(task => {
         let time = task.querySelector(".timeData").innerHTML;
         let taskText = task.querySelector(".taskData").innerText;
         printContent += `<tr><td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
                              <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td></tr>`;
-    }
+    });
+
     printContent += `</table>`;
 
     let printWindow = window.open("", "", "width=800,height=600");
@@ -131,3 +134,4 @@ function printTasks() {
     `);
     printWindow.document.close();
 }
+
