@@ -29,7 +29,7 @@ function addTask() {
   // Create a container for the time details
   const timeDiv = document.createElement("div");
   timeDiv.className = "timeData";
-  timeDiv.innerHTML = `Started at: ${formattedTime1} <br> Due at:    ${formattedTime2}`;
+  timeDiv.innerHTML = `Started at- ${formattedTime1} <br> Due at- ${formattedTime2}`;
 
   // Create a container for the task description
   const taskDiv = document.createElement("div");
