@@ -165,4 +165,23 @@ function printTasks() {
     `);
     printWindow.document.close();
 }
+// Dark Mode Toggle Function
+const darkModeToggle = document.getElementById("darkModeToggle");
+const body = document.body;
 
+// Check if Dark Mode was enabled before
+if (localStorage.getItem("darkMode") === "enabled") {
+    body.classList.add("dark-mode");
+    darkModeToggle.checked = true;
+}
+
+// Toggle Dark Mode
+darkModeToggle.addEventListener("change", () => {
+    if (darkModeToggle.checked) {
+        body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("darkMode", "disabled");
+    }
+});
