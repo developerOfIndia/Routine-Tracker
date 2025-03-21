@@ -2,24 +2,25 @@ function addTask() {
   const inputTask = document.getElementById("inputTask").value.trim();
   const timeValue1 = document.getElementById("timePicker1").value;
   const timeValue2 = document.getElementById("timePicker2").value;
-  // validation for time
-  if (!timeValue1 || !timeValue2) {
-    alert("Please select valid time values!");
-    return;
-  }
-  if (timeValue2 <= timeValue1) {
-    alert("Please select time in order");
-    document.getElementById("timePicker1").value = "12:00";
-    document.getElementById("timePicker2").value = "12:00";
-    document.getElementById("inputTask").value = "";
-    return;
-  }
   // validation for input
   if (inputTask === "") {
     alert("Please enter a task! Task cannot be empty.");
     document.getElementById("inputTask").value = "";
     return;
   }
+  // validation for time
+  if (!timeValue1 || !timeValue2) {
+    alert("Please select valid time values!");
+    return;
+  }
+  if (timeValue2 <= timeValue1) {
+    alert("Please select valid time values!");
+    document.getElementById("timePicker1").value = "12:00";
+    document.getElementById("timePicker2").value = "12:00";
+    document.getElementById("inputTask").value = "";
+    return;
+  }
+ 
   // formattedTime
   const formattedTime1 = convertTo12HourFormat(timeValue1);
   const formattedTime2 = convertTo12HourFormat(timeValue2);
