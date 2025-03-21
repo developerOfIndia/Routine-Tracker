@@ -17,7 +17,7 @@ function addTask() {
     alert("Please select valid time values!");
     document.getElementById("timePicker1").value = "12:00";
     document.getElementById("timePicker2").value = "12:00";
-    document.getElementById("inputTask").value = "";
+    //document.getElementById("inputTask").value = "";
     return;
   }
  
