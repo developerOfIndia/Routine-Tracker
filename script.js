@@ -97,15 +97,20 @@ function printTasks() {
         return; // Stop execution if no tasks exist
     }
 
-    let printContent = `<h2>Routine Tracker Tasks</h2><table style="width:100%; border-collapse: collapse;">`;
-    printContent += `<tr><th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Time</th>
-                         <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Task</th></tr>`;
+    let printContent = `<h2>Routine Tracker Tasks</h2>
+                        <table style="width:100%; border-collapse: collapse;">
+                            <tr>
+                                <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Time</th>
+                                <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Task</th>
+                            </tr>`;
 
     tasks.forEach(task => {
         let time = task.querySelector(".timeData").innerHTML;
         let taskText = task.querySelector(".taskData").innerText;
-        printContent += `<tr><td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
-                             <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td></tr>`;
+        printContent += `<tr>
+                            <td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
+                            <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td>
+                         </tr>`;
     });
 
     printContent += `</table>`;
@@ -117,14 +122,39 @@ function printTasks() {
         <head>
             <title>Print Tasks</title>
             <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
+                body { font-family: Arial, sans-serif; margin: 20px; position: relative; }
                 h2 { text-align: center; }
                 table { width: 100%; border-collapse: collapse; }
                 th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
+                
+                /* Watermark Styling */
+                .watermark {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotate(-30deg);
+                    font-size: 50px;
+                    font-weight: bold;
+                    color: rgba(0, 0, 0, 0.1);
+                    z-index: -1;
+                    user-select: none;
+                }
+
+                /* Copyright Styling */
+                .copyright {
+                    position: fixed;
+                    bottom: 10px;
+                    right: 10px;
+                    font-size: 12px;
+                    color: #666;
+                    text-align: right;
+                }
             </style>
         </head>
         <body>
+            <div class="watermark">Routine-Tracker</div>
             ${printContent}
+            <div class="copyright">© DeveloperOfIndia</div>
             <script>
                 window.onload = function() {
                     window.print();
@@ -136,4 +166,3 @@ function printTasks() {
     `);
     printWindow.document.close();
 }
-
