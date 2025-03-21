@@ -86,3 +86,43 @@ function downloadTasks() {
     document.body.removeChild(link)
 }
 
+function printTasks() {
+    let taskList = document.getElementById("taskList").children;
+    if (taskList.length === 0) {
+        alert("No tasks to print!");
+        return;
+    }
+
+    let printContent = `<h2>Routine Tracker Tasks</h2><ul>`;
+    for (let task of taskList) {
+        let time = task.querySelector(".timeData").innerHTML;
+        let taskText = task.querySelector(".taskData").innerText;
+        printContent += `<li><strong>${time}</strong><br>Task: ${taskText}</li><br>`;
+    }
+    printContent += `</ul>`;
+
+    let printWindow = window.open("", "", "width=800,height=600");
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Print Tasks</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h2 { text-align: center; }
+                ul { list-style-type: none; padding: 0; }
+                li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc; }
+            </style>
+        </head>
+        <body>
+            ${printContent}
+            <script>
+                window.onload = function() {
+                    window.print();
+                    window.onafterprint = function() { window.close(); };
+                };
+            </script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+}
