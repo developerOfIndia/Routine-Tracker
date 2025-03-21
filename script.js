@@ -85,21 +85,26 @@ function downloadTasks() {
     link.click()
     document.body.removeChild(link)
 }
+//Function to print tasks
 
 function printTasks() {
     let taskList = document.getElementById("taskList").children;
-    if (taskList.length === 0) {
+    if (taskList.childElementCount === 0) {
         alert("No tasks to print!");
         return;
     }
 
-    let printContent = `<h2>Routine Tracker Tasks</h2><ul>`;
+    let printContent = `<h2>Routine Tracker Tasks</h2><table style="width:100%; border-collapse: collapse;">`;
+    printContent += `<tr><th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Time</th>
+                         <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Task</th></tr>`;
+
     for (let task of taskList) {
         let time = task.querySelector(".timeData").innerHTML;
         let taskText = task.querySelector(".taskData").innerText;
-        printContent += `<li><strong>${time}</strong><br>Task: ${taskText}</li><br>`;
+        printContent += `<tr><td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
+                             <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td></tr>`;
     }
-    printContent += `</ul>`;
+    printContent += `</table>`;
 
     let printWindow = window.open("", "", "width=800,height=600");
     printWindow.document.write(`
@@ -109,8 +114,8 @@ function printTasks() {
             <style>
                 body { font-family: Arial, sans-serif; margin: 20px; }
                 h2 { text-align: center; }
-                ul { list-style-type: none; padding: 0; }
-                li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc; }
+                table { width: 100%; border-collapse: collapse; }
+                th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
             </style>
         </head>
         <body>
