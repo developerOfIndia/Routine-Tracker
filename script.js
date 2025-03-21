@@ -90,11 +90,11 @@ function downloadTasks() {
 
 function printTasks() {
     let taskList = document.getElementById("taskList");
-    let tasks = taskList.querySelectorAll("li"); // Get all task items
+    let tasks = taskList.querySelectorAll("li");
 
-    if (tasks.length === 0) { // Check if there are no tasks
+    if (tasks.length === 0) {
         alert("No tasks to print!");
-        return; // Stop execution if no tasks exist
+        return;
     }
 
     let printContent = `<h2>Routine Tracker Tasks</h2>
@@ -115,7 +115,6 @@ function printTasks() {
 
     printContent += `</table>`;
 
-    // Open print window only if tasks exist
     let printWindow = window.open("", "", "width=800,height=600");
     printWindow.document.write(`
         <html>
@@ -126,8 +125,8 @@ function printTasks() {
                 h2 { text-align: center; }
                 table { width: 100%; border-collapse: collapse; }
                 th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
-                
-                /* Watermark Styling */
+
+                /* Ensure Watermark is on a Single Line */
                 .watermark {
                     position: fixed;
                     top: 50%;
@@ -137,17 +136,17 @@ function printTasks() {
                     font-weight: bold;
                     color: rgba(0, 0, 0, 0.1);
                     z-index: -1;
+                    white-space: nowrap; /* Prevents text from wrapping */
                     user-select: none;
                 }
 
-                /* Copyright Styling */
+                /* Copyright Text */
                 .copyright {
                     position: fixed;
                     bottom: 10px;
                     right: 10px;
                     font-size: 12px;
                     color: #666;
-                    text-align: right;
                 }
             </style>
         </head>
@@ -166,3 +165,4 @@ function printTasks() {
     `);
     printWindow.document.close();
 }
+
