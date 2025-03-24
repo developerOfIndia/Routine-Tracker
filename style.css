@@ -129,6 +129,13 @@ li {
   font-weight: bold;
   white-space: pre-line;
 }
+.dateData {
+
+  text-align: left;
+  font-weight: bold;
+  color: #333;
+  /* margin-bottom: 5px; */
+}
 .taskData {
   text-align: center;
 }

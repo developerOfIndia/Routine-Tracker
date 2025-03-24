@@ -2,6 +2,7 @@ function addTask() {
   const inputTask = document.getElementById("inputTask").value.trim();
   const timeValue1 = document.getElementById("timePicker1").value;
   const timeValue2 = document.getElementById("timePicker2").value;
+  const selectedDate = document.getElementById("date").value;
   // validation for input
   if (inputTask === "") {
     alert("Please enter a task! Task cannot be empty.");
@@ -20,30 +21,42 @@ function addTask() {
     //document.getElementById("inputTask").value = "";
     return;
   }
- 
+  //    validation for date
+  if (!selectedDate) {
+    alert("Please select a date!");
+    return;
+  }
+
   // formattedTime
   const formattedTime1 = convertTo12HourFormat(timeValue1);
   const formattedTime2 = convertTo12HourFormat(timeValue2);
 
   const newTask = document.createElement("li");
   newTask.classList.add("task-item");
+
+  // Create a container for the date details
+  const dateDiv = document.createElement("div");
+  dateDiv.className = "dateData";
+//   dateDiv.innerHTML = `Date: ${selectedDate}<br>`;
+
   // Create a container for the time details
   const timeDiv = document.createElement("div");
   timeDiv.className = "timeData";
-  timeDiv.innerHTML = `Started at- ${formattedTime1} <br> Due at- ${formattedTime2}`;
+  timeDiv.innerHTML = `Date: ${selectedDate}<br><br> Started at- ${formattedTime1} <br> Due at- ${formattedTime2}`;
 
   // Create a container for the task description
   const taskDiv = document.createElement("div");
   taskDiv.className = "taskData";
   taskDiv.textContent = inputTask;
-// Ensure the existing button stays at the end
+  // Ensure the existing button stays at the end
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
-  deleteBtn.className="delete-btn";
+  deleteBtn.className = "delete-btn";
   deleteBtn.onclick = function () {
     newTask.remove();
   };
   // Append elements to the list item
+  newTask.appendChild(dateDiv);
   newTask.appendChild(timeDiv);
   newTask.appendChild(taskDiv);
   newTask.appendChild(deleteBtn);
@@ -53,7 +66,6 @@ function addTask() {
   document.getElementById("inputTask").value = "";
   document.getElementById("timePicker1").value = "12:00";
   document.getElementById("timePicker2").value = "12:00";
-  
 }
 // Function to convert 24-hour format to 12-hour format
 function convertTo12HourFormat(time) {
@@ -65,58 +77,64 @@ function convertTo12HourFormat(time) {
 
 // Function to download tasks
 function downloadTasks() {
-    let taskList = document.getElementById("taskList").children
-    if (taskList.length === 0) {
-        alert("No tasks to download!")
-        return;
-    }
+  let taskList = document.getElementById("taskList").children;
+  if (taskList.length === 0) {
+    alert("No tasks to download!");
+    return;
+  }
 
-    let content = "Routine Tracker Tasks\n\n";
-    for (let task of taskList) {
-        let time = task.querySelector(".timeData").innerText
-        let taskText = task.querySelector(".taskData").innerText
-        content += `${time}\nTask: ${taskText}\n\n`
-    }
+  let content = "Routine Tracker Tasks\n\n";
+  for (let task of taskList) {
+    let time = task.querySelector(".timeData").innerText;
+    let date = task.querySelector(".dateData").innerText;
+    let taskText = task.querySelector(".taskData").innerText;
 
-    let blob = new Blob([content], { type: "text/plain" })
-    let link = document.createElement("a")
-    link.href = URL.createObjectURL(blob)
-    link.download = "Routine_Tasks.txt"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    content += `${date}\n\n${time}\nTask: ${taskText}\n\n`;
+  }
+
+  let blob = new Blob([content], { type: "text/plain" });
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "Routine_Tasks.txt";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 //Function to print tasks
 
 function printTasks() {
-    let taskList = document.getElementById("taskList");
-    let tasks = taskList.querySelectorAll("li");
+  let taskList = document.getElementById("taskList");
+  let tasks = taskList.querySelectorAll("li");
 
-    if (tasks.length === 0) {
-        alert("No tasks to print!");
-        return;
-    }
+  if (tasks.length === 0) {
+    alert("No tasks to print!");
+    return;
+  }
 
-    let printContent = `<h2>Routine Tracker Tasks</h2>
+  let printContent = `<h2>Routine Tracker Tasks</h2>
                         <table style="width:100%; border-collapse: collapse;">
                             <tr>
                                 <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Time</th>
                                 <th style="text-align:left; padding:8px; border-bottom: 2px solid #000;">Task</th>
                             </tr>`;
 
-    tasks.forEach(task => {
-        let time = task.querySelector(".timeData").innerHTML;
-        let taskText = task.querySelector(".taskData").innerText;
-        printContent += `<tr>
+  tasks.forEach((task) => {
+    let time = task.querySelector(".timeData").innerHTML;
+    let date = task.querySelector(".dateData").innerText;
+    let taskText = task.querySelector(".taskData").innerText;
+    printContent += `<tr>
+     <td style="padding:8px; border-bottom: 1px solid #ccc;">${date}</td><tr/>
+     <tr>
+
                             <td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
                             <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td>
                          </tr>`;
-    });
+  });
 
-    printContent += `</table>`;
+  printContent += `</table>`;
 
-    let printWindow = window.open("", "", "width=800,height=600");
-    printWindow.document.write(`
+  let printWindow = window.open("", "", "width=800,height=600");
+  printWindow.document.write(`
         <html>
         <head>
             <title>Print Tasks</title>
@@ -163,7 +181,7 @@ function printTasks() {
         </body>
         </html>
     `);
-    printWindow.document.close();
+  printWindow.document.close();
 }
 // Dark Mode Toggle Function
 const darkModeToggle = document.getElementById("darkModeToggle");
@@ -171,17 +189,17 @@ const body = document.body;
 
 // Check if Dark Mode was enabled before
 if (localStorage.getItem("darkMode") === "enabled") {
-    body.classList.add("dark-mode");
-    darkModeToggle.checked = true;
+  body.classList.add("dark-mode");
+  darkModeToggle.checked = true;
 }
 
 // Toggle Dark Mode
 darkModeToggle.addEventListener("change", () => {
-    if (darkModeToggle.checked) {
-        body.classList.add("dark-mode");
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        body.classList.remove("dark-mode");
-        localStorage.setItem("darkMode", "disabled");
-    }
+  if (darkModeToggle.checked) {
+    body.classList.add("dark-mode");
+    localStorage.setItem("darkMode", "enabled");
+  } else {
+    body.classList.remove("dark-mode");
+    localStorage.setItem("darkMode", "disabled");
+  }
 });
