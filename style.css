@@ -43,6 +43,9 @@ body {
   margin-left: 25px;
   margin-top: 10px;
 }
+#date{
+  width:auto
+}
 .row {
   font-size: 1.4em;
   font-weight: 900;
