@@ -82,11 +82,10 @@ function downloadTasks() {
 
   let content = "Routine Tracker Tasks\n\n";
   for (let task of taskList) {
-    let time = task.querySelector(".timeData").innerText;
-    let date = task.querySelector(".dateData").innerText;
-    let taskText = task.querySelector(".taskData").innerText;
+    let time = task.querySelector(".time-container").innerText.trim();
+    let taskText = task.querySelector(".taskData").innerText.trim();
 
-    content += `${date}\n\n${time}\nTask: ${taskText}\n\n`;
+    content += `${time}\nTask: ${taskText}\n\n`;
   }
 
   let blob = new Blob([content], { type: "text/plain" });
@@ -116,11 +115,10 @@ function printTasks() {
                             </tr>`;
 
   tasks.forEach((task) => {
-    let time = task.querySelector(".timeData").innerHTML;
-    let date = task.querySelector(".dateData").innerText;
-    let taskText = task.querySelector(".taskData").innerText;
-    printContent += `<tr>
-     <td style="padding:8px; border-bottom: 1px solid #ccc;">${date}</td><tr/>
+    let time = task.querySelector(".time-container").innerText.trim();
+    let taskText = task.querySelector(".taskData").innerText.trim();
+    
+    printContent += `
      <tr>
 
                             <td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
