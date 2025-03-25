@@ -115,7 +115,7 @@ ul {
   padding: 15px;
 }
 li {
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr 2fr auto; /* Creates two equal columns */
   align-items: center;
   border: 1px solid white;
@@ -123,6 +123,7 @@ li {
   padding: 8px;
   margin-bottom: 7px;
   gap: 10px;
+  justify-content: space-between;
 }
 .timeData {
   text-align: left;
@@ -134,10 +135,17 @@ li {
   text-align: left;
   font-weight: bold;
   color: #333;
-  /* margin-bottom: 5px; */
+}
+.time-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
 }
 .taskData {
-  text-align: center;
+  flex: 1;
+  text-align: left;
+  margin-left:90px
 }
 .delete-btn {
   background-color: #ff6f61;

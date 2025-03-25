@@ -32,19 +32,17 @@ function addTask() {
   const formattedTime2 = convertTo12HourFormat(timeValue2);
 
   const newTask = document.createElement("li");
-  newTask.classList.add("task-item");
 
-  // Create a container for the date details
-  const dateDiv = document.createElement("div");
-  dateDiv.className = "dateData";
-//   dateDiv.innerHTML = `Date: ${selectedDate}<br>`;
+   // Time Container (left side)
+   const timeContainer = document.createElement("div");
+   timeContainer.className = "time-container";
+   timeContainer.innerHTML = `
+     <div class="dateData"> Date- ${selectedDate}</div>
+     <div class="timeData"> Started at- ${formattedTime1}</div>
+     <div class="timeData"> Due at- ${formattedTime2}</div>
+   `;
 
-  // Create a container for the time details
-  const timeDiv = document.createElement("div");
-  timeDiv.className = "timeData";
-  timeDiv.innerHTML = `Date: ${selectedDate}<br><br> Started at- ${formattedTime1} <br> Due at- ${formattedTime2}`;
-
-  // Create a container for the task description
+  // Create a container for the task description (right side)
   const taskDiv = document.createElement("div");
   taskDiv.className = "taskData";
   taskDiv.textContent = inputTask;
@@ -56,8 +54,7 @@ function addTask() {
     newTask.remove();
   };
   // Append elements to the list item
-  newTask.appendChild(dateDiv);
-  newTask.appendChild(timeDiv);
+  newTask.appendChild(timeContainer);
   newTask.appendChild(taskDiv);
   newTask.appendChild(deleteBtn);
   // Append the new list item to the task list
