@@ -2,8 +2,8 @@ function addTask() {
   const inputTask = document.getElementById("inputTask").value.trim();
   const timeValue1 = document.getElementById("timePicker1").value;
   const timeValue2 = document.getElementById("timePicker2").value;
-  const selectedDate = document.getElementById("date").value;
-  // validation for input
+  const dateInput = document.getElementById("date");
+  const selectedDate = dateInput.value;  // validation for input
   if (inputTask === "") {
     alert("Please enter a task! Task cannot be empty.");
     document.getElementById("inputTask").value = "";
@@ -26,6 +26,7 @@ function addTask() {
     alert("Please select a date!");
     return;
   }
+  
 
   // formattedTime
   const formattedTime1 = convertTo12HourFormat(timeValue1);
@@ -33,10 +34,10 @@ function addTask() {
 
   const newTask = document.createElement("li");
 
-   // Time Container (left side)
-   const timeContainer = document.createElement("div");
-   timeContainer.className = "time-container";
-   timeContainer.innerHTML = `
+  // Time Container (left side)
+  const timeContainer = document.createElement("div");
+  timeContainer.className = "time-container";
+  timeContainer.innerHTML = `
      <div class="dateData"> Date- ${selectedDate}</div>
      <div class="timeData"> Started at- ${formattedTime1}</div>
      <div class="timeData"> Due at- ${formattedTime2}</div>
@@ -63,6 +64,7 @@ function addTask() {
   document.getElementById("inputTask").value = "";
   document.getElementById("timePicker1").value = "12:00";
   document.getElementById("timePicker2").value = "12:00";
+  initializeDateInput();
 }
 // Function to convert 24-hour format to 12-hour format
 function convertTo12HourFormat(time) {
@@ -70,6 +72,16 @@ function convertTo12HourFormat(time) {
   let period = hours >= 12 ? "PM" : "AM";
   hours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
   return `${hours}:${minutes} ${period}`;
+}
+function initializeDateInput() {
+  const dateInput = document.getElementById("date");
+  const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+
+  dateInput.min = today; // Prevent past dates
+  // Reset the input field without setting an actual value
+  dateInput.value = ""; 
+  dateInput.removeAttribute("value"); 
+  dateInput.setAttribute("placeholder", "mm/dd/yyyy");
 }
 
 // Function to download tasks
@@ -117,7 +129,7 @@ function printTasks() {
   tasks.forEach((task) => {
     let time = task.querySelector(".time-container").innerText.trim();
     let taskText = task.querySelector(".taskData").innerText.trim();
-    
+
     printContent += `
      <tr>
 
