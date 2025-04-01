@@ -21,13 +21,7 @@ function addTask() {
     //document.getElementById("inputTask").value = "";
     return;
   }
-  //    validation for date
-  if (!selectedDate) {
-    alert("Please select a date!");
-    return;
-  }
   
-
   // formattedTime
   const formattedTime1 = convertTo12HourFormat(timeValue1);
   const formattedTime2 = convertTo12HourFormat(timeValue2);
@@ -79,10 +73,10 @@ function initializeDateInput() {
 
   dateInput.min = today; // Prevent past dates
   // Reset the input field without setting an actual value
-  dateInput.value = ""; 
-  dateInput.removeAttribute("value"); 
-  dateInput.setAttribute("placeholder", "mm/dd/yyyy");
+  dateInput.value = today; 
 }
+// Call function on page load
+window.onload = initializeDateInput;
 
 // Function to download tasks
 function downloadTasks() {
