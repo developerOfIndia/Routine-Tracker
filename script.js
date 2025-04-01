@@ -69,12 +69,22 @@ function convertTo12HourFormat(time) {
 }
 function initializeDateInput() {
   const dateInput = document.getElementById("date");
-  const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+  const today = new Date();
+  
+  // Format date as DD/MM/YYYY
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = today.getFullYear();
+  const formattedDate = `${day}/${month}/${year}`;
 
-  dateInput.min = today; // Prevent past dates
-  // Reset the input field without setting an actual value
-  dateInput.value = today; 
+  // Prevent past dates (still needs YYYY-MM-DD for min attribute)
+  const minDate = today.toISOString().split("T")[0];
+  dateInput.min = minDate;
+
+  // Set value in DD/MM/YYYY format
+  dateInput.value = formattedDate;
 }
+
 // Call function on page load
 window.onload = initializeDateInput;
 
