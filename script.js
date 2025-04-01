@@ -126,26 +126,24 @@ function printTasks() {
 
     printContent += `
      <tr>
-
-                            <td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
-                            <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td>
-                         </tr>`;
+       <td style="padding:8px; border-bottom: 1px solid #ccc;">${time}</td>
+       <td style="padding:8px; border-bottom: 1px solid #ccc;">${taskText}</td>
+     </tr>`;
   });
 
   printContent += `</table>`;
 
-  let printWindow = window.open("", "", "width=800,height=600");
-  printWindow.document.write(`
+  let originalContent = document.body.innerHTML; // Save current content
+
+  document.body.innerHTML = `
         <html>
         <head>
             <title>Print Tasks</title>
             <style>
-                body { font-family: Arial, sans-serif; margin: 20px; position: relative; }
+                body { font-family: Arial, sans-serif; margin: 20px; }
                 h2 { text-align: center; }
                 table { width: 100%; border-collapse: collapse; }
                 th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
-
-                /* Ensure Watermark is on a Single Line */
                 .watermark {
                     position: fixed;
                     top: 50%;
@@ -155,11 +153,9 @@ function printTasks() {
                     font-weight: bold;
                     color: rgba(0, 0, 0, 0.1);
                     z-index: -1;
-                    white-space: nowrap; /* Prevents text from wrapping */
+                    white-space: nowrap;
                     user-select: none;
                 }
-
-                /* Copyright Text */
                 .copyright {
                     position: fixed;
                     bottom: 10px;
@@ -173,17 +169,13 @@ function printTasks() {
             <div class="watermark">Routine-Tracker</div>
             ${printContent}
             <div class="copyright">© DeveloperOfIndia</div>
-            <script>
-                window.onload = function() {
-                    window.print();
-                    window.onafterprint = function() { window.close(); };
-                };
-            </script>
         </body>
-        </html>
-    `);
-  printWindow.document.close();
+        </html>`;
+
+  window.print();
+  document.body.innerHTML = originalContent; // Restore original content
 }
+
 // Dark Mode Toggle Function
 const darkModeToggle = document.getElementById("darkModeToggle");
 const body = document.body;
