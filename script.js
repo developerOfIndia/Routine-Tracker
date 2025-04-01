@@ -67,17 +67,13 @@ function convertTo12HourFormat(time) {
   hours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
   return `${hours}:${minutes} ${period}`;
 }
-function initializeDateInput() {
+initializeDateInput() {
   const dateInput = document.getElementById("date");
-  const today = new Date();
+  const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
-  // Format as DD/MM/YYYY
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-  const formattedDate = `${day}/${month}/${year}`;
-
-  dateInput.value = formattedDate;
+  dateInput.min = today; // Prevent past dates
+  // Reset the input field without setting an actual value
+  dateInput.value = today; 
 }
 
 
