@@ -133,53 +133,62 @@ function printTasks() {
 
   printContent += `</table>`;
 
-  let printWindow = window.open("", "_blank", "width=800,height=600");
+  // Create an invisible iframe for printing
+  let printFrame = document.createElement("iframe");
+  printFrame.style.position = "absolute";
+  printFrame.style.width = "0px";
+  printFrame.style.height = "0px";
+  printFrame.style.border = "none";
+  document.body.appendChild(printFrame);
 
-  printWindow.document.write(`
-        <html>
-        <head>
-            <title>Print Tasks</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                h2 { text-align: center; }
-                table { width: 100%; border-collapse: collapse; }
-                th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
-                .watermark {
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) rotate(-30deg);
-                    font-size: 50px;
-                    font-weight: bold;
-                    color: rgba(0, 0, 0, 0.1);
-                    z-index: -1;
-                    white-space: nowrap;
-                    user-select: none;
-                }
-                .copyright {
-                    position: fixed;
-                    bottom: 10px;
-                    right: 10px;
-                    font-size: 12px;
-                    color: #666;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="watermark">Routine-Tracker</div>
-            ${printContent}
-            <div class="copyright">© DeveloperOfIndia</div>
-            <script>
-                window.onload = function() {
-                    window.print();
-                    setTimeout(function() { window.close(); }, 500); // Auto-close after printing
-                };
-            </script>
-        </body>
-        </html>
-    `);
+  let frameDoc = printFrame.contentWindow.document;
+  frameDoc.open();
+  frameDoc.write(`
+    <html>
+    <head>
+        <title>Print Tasks</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h2 { text-align: center; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
+            .watermark {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-30deg);
+                font-size: 50px;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.1);
+                z-index: -1;
+                white-space: nowrap;
+                user-select: none;
+            }
+            .copyright {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                font-size: 12px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="watermark">Routine-Tracker</div>
+        ${printContent}
+        <div class="copyright">© DeveloperOfIndia</div>
+    </body>
+    </html>
+  `);
+  frameDoc.close();
 
-  printWindow.document.close();
+  // Print from the iframe and remove it afterward
+  printFrame.contentWindow.focus();
+  printFrame.contentWindow.print();
+
+  setTimeout(() => {
+    document.body.removeChild(printFrame);
+  }, 1000);
 }
 
 // Dark Mode Toggle Function
