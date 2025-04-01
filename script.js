@@ -133,9 +133,9 @@ function printTasks() {
 
   printContent += `</table>`;
 
-  let originalContent = document.body.innerHTML; // Save current content
+  let printWindow = window.open("", "_blank", "width=800,height=600");
 
-  document.body.innerHTML = `
+  printWindow.document.write(`
         <html>
         <head>
             <title>Print Tasks</title>
@@ -169,11 +169,17 @@ function printTasks() {
             <div class="watermark">Routine-Tracker</div>
             ${printContent}
             <div class="copyright">© DeveloperOfIndia</div>
+            <script>
+                window.onload = function() {
+                    window.print();
+                    setTimeout(function() { window.close(); }, 500); // Auto-close after printing
+                };
+            </script>
         </body>
-        </html>`;
+        </html>
+    `);
 
-  window.print();
-  document.body.innerHTML = originalContent; // Restore original content
+  printWindow.document.close();
 }
 
 // Dark Mode Toggle Function
